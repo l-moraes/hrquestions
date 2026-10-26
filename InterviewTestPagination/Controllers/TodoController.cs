@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
 using InterviewTestPagination.Models;
 using InterviewTestPagination.Models.Todo;
 
@@ -7,17 +6,20 @@ namespace InterviewTestPagination.Controllers {
     /// <summary>
     /// 'Rest' controller for the <see cref="Todo"/>
     /// model.
-    /// 
-    /// TODO: implement the pagination Action
     /// </summary>
+    [RoutePrefix("api/Todo")]
     public class TodoController : ApiController {
 
-        // TODO: [low priority] setup DI 
+        // TODO: [low priority] setup DI
         private readonly IModelService<Todo> _todoService = new TodoService();
 
-        [HttpGet]
-        public IEnumerable<Todo> Todos(/* parameters  */) {
-            return _todoService.Repository.All();
+        /// <summary>
+        /// Lists one page of todos.
+        /// e.g.: GET api/Todo/Todos?page=2&amp;pageSize=20&amp;sortBy=id&amp;sortDesc=false
+        /// </summary>
+        [HttpGet, Route("Todos")]
+        public PagedResult<Todo> Todos([FromUri] PageRequest request) {
+            return _todoService.List(request);
         }
 
     }

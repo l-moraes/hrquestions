@@ -78,3 +78,5 @@ _[Ss]cripts
 /.vs
 Backup
 .vs/config/applicationhost.config
+# IDE settings
+.idea/

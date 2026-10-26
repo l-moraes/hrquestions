@@ -17,6 +17,7 @@ namespace InterviewTestPagination {
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }
